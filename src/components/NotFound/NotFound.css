@@ -1,0 +1,8 @@
+.notfound-page {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100vh;
+  font-weight: 600;
+  font-size: x-large;
+}
