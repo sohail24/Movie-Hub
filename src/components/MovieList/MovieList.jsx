@@ -5,7 +5,7 @@ import "./MovieList.css";
 import MovieCard from "./MovieCard";
 import FilterGroup from "./FilterGroup";
 
-const MovieList = ({ type, title, emoji }) => {
+const MovieList = ({ type, title, emoji, searchQuery }) => {
   //we use useEffect hook to call the api, we call it once the page is rendered and not everytime
   //for that we pass empty array to use effect
   //console.log(type, title, emoji);
@@ -18,6 +18,10 @@ const MovieList = ({ type, title, emoji }) => {
   useEffect(() => {
     fetchMovies();
   }, [type, title, emoji]);
+
+  useEffect(() => {
+      onSearch(searchQuery);
+  }, [searchQuery])
 
   useEffect(() => {
     localStorage.setItem("movies_data", JSON.stringify(movies));
@@ -67,6 +71,17 @@ const MovieList = ({ type, title, emoji }) => {
     setFilterMovies(data.results);
   };
 
+  const onSearch = async (search) => {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/search/movie?query=${search}&api_key=${
+        import.meta.env.VITE_TMDB_API_KEY
+      }`)
+      
+    const data = await response.json();
+    setMovies(data.results);
+    setFilterMovies(data.results);
+  };
+
   const handleFilter = (rate) => {
     if (rate == minRating) {
       setMinRating(0);
@@ -91,7 +106,7 @@ const MovieList = ({ type, title, emoji }) => {
     <section className="movie_list" id={type}>
       <header className="align_center movie_list_header">
         <h2 className="align_center movie_list_heading">
-          {title} {emoji}
+          {searchQuery !== "" && searchQuery === null? title+emoji : "Search results for : "+ searchQuery }
         </h2>
         <div className="align_center movie_list_fs">
           <FilterGroup

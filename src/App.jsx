@@ -5,6 +5,7 @@ import "./App.css";
 import Home from "./Pages/Home";
 import NotFound from "./components/NotFound/NotFound";
 import MoviePage from "./components/MovieList/MoviePage";
+import SearchPage from "./Pages/SearchPage";
 
 const App = () => {
   // const { id } = useParams();
@@ -46,8 +47,13 @@ const App = () => {
               />
             }
           />
-
           <Route path="/movie/:movie_id" element={<MoviePage />} />
+          <Route path="/search" element={<Home
+                isHomePage={true}
+                type={"upcoming"}
+                title={"Upcoming"}
+                emoji={"🎇"}
+              />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </main>

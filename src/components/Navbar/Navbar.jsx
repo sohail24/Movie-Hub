@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import "./Navbar.css";
 import DarkMode from "../DarkMode/DarkMode";
 import { Link, NavLink } from "react-router-dom";
+import SearchBar from "../SearchBar/SearchBar";
 
-const Navbar = ({ isHomePage }) => {
+const Navbar = ({ isHomePage}) => {
   return (
     <nav className={`navbar sticky`}>
       <h1>movie hub</h1>
+      <SearchBar/>
       <div className="navbar_links">
         <DarkMode />
         {isHomePage ? (
