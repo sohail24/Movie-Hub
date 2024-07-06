@@ -5,13 +5,13 @@ const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   // Read the query parameter from the URL when the component mounts
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const query = urlParams.get('q');
-    if (query) {
-      setSearchTerm(query);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const urlParams = new URLSearchParams(window.location.search);
+  //   const query = urlParams.get('q');
+  //   if (query) {
+  //     setSearchTerm(query);
+  //   }
+  // }, []);
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);

@@ -72,14 +72,16 @@ const MovieList = ({ type, title, emoji, searchQuery }) => {
   };
 
   const onSearch = async (search) => {
-    const response = await fetch(
-      `https://api.themoviedb.org/3/search/movie?query=${search}&api_key=${
-        import.meta.env.VITE_TMDB_API_KEY
-      }`)
-      
-    const data = await response.json();
-    setMovies(data.results);
-    setFilterMovies(data.results);
+    if(search !== null){
+      const response = await fetch(
+        `https://api.themoviedb.org/3/search/movie?query=${search}&api_key=${
+          import.meta.env.VITE_TMDB_API_KEY
+        }`)
+        
+      const data = await response.json();
+      setMovies(data.results);
+      setFilterMovies(data.results);
+    }
   };
 
   const handleFilter = (rate) => {
